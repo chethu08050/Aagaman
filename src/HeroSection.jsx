@@ -389,7 +389,7 @@ export default function HeroSection() {
           alt="CS Manicz Logo" 
           className="hero-logo"
         />
-        <h1 className="hero-title">AAGAM</h1>
+        <h1 className="hero-title">AAGAMAN</h1>
       </div>
     </section>
   );
