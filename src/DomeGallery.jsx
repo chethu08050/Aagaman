@@ -44,8 +44,8 @@ const DEFAULT_IMAGES = [
 const DEFAULTS = {
   maxVerticalRotationDeg: 5,
   dragSensitivity: 15,
-  enlargeTransitionMs: 250,
-  segments: 25
+  enlargeTransitionMs: 200,
+  segments: 20
 };
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
@@ -1035,7 +1035,7 @@ export default function DomeGallery({
                       muted 
                       loop 
                       playsInline
-                      preload="metadata"
+                      preload="none"
                       loading="lazy"
                       crossOrigin="anonymous"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: 'rgba(168, 85, 247, 0.1)' }}
