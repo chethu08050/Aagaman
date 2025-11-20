@@ -130,7 +130,7 @@ export default function ShowtimeSchedule() {
 
   const handleCardClick = (index) => {
     setCurrentEventIndex(index);
-    if (revealedEvents.includes(index)) setSelectedEvent(eventsData[index]);
+    setSelectedEvent(eventsData[index]);
   };
 
   return (
@@ -143,17 +143,8 @@ export default function ShowtimeSchedule() {
             <div className="showtime-bubble-content">
               <div className="showtime-event-icon">{eventsData[currentEventIndex].icon}</div>
               <div className="showtime-current-label">CURRENT EVENT</div>
-              {revealedEvents.includes(currentEventIndex) ? (
-                <>
-                  <h2 className="showtime-event-title">{eventsData[currentEventIndex].title}</h2>
-                  <p className="showtime-event-time">{eventsData[currentEventIndex].time}</p>
-                </>
-              ) : (
-                <>
-                  <h2 className="showtime-event-title showtime-coming-soon-text">Coming Soon</h2>
-                  <p className="showtime-event-time">Details will be revealed shortly</p>
-                </>
-              )}
+              <h2 className="showtime-event-title">{eventsData[currentEventIndex].title}</h2>
+              <p className="showtime-event-time">{eventsData[currentEventIndex].time}</p>
             </div>
           </div>
 
@@ -227,14 +218,8 @@ function EventCard({ event, index, visible, revealed, position, rotation, onCard
     >
       <div className={`showtime-card-content ${event.gradient}`}>
         <div className="showtime-card-icon">{event.icon}</div>
-        {revealed ? (
-          <>
-            <h3>{event.title}</h3>
-            <p>{event.time}</p>
-          </>
-        ) : (
-          <h3 className="showtime-card-coming-soon">Coming Soon</h3>
-        )}
+        <h3>{event.title}</h3>
+        <p>{event.time}</p>
       </div>
     </div>
   );
