@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import './DomeGallery.css';
 
@@ -163,6 +163,52 @@ export default function DomeGallery({
   const currentColorRef = useRef('#8a2be2');
   const isHoveringTileRef = useRef(false);
   const autoRotateSpeedRef = useRef(0); // For smooth acceleration/deceleration
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload images
+  useEffect(() => {
+    const imageUrls = items
+      .filter(item => item.src && !item.src.endsWith('.mp4') && !item.src.endsWith('.webm'))
+      .map(item => item.src);
+    
+    let loadedCount = 0;
+    const totalImages = imageUrls.length;
+    
+    if (totalImages === 0) {
+      setImagesLoaded(true);
+      return;
+    }
+
+    const preloadImage = (src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+          resolve();
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setImagesLoaded(true);
+          }
+          resolve();
+        };
+        img.src = src;
+      });
+    };
+
+    // Preload first 10 images immediately, rest progressively
+    const priorityImages = imageUrls.slice(0, 10);
+    const remainingImages = imageUrls.slice(10);
+
+    Promise.all(priorityImages.map(preloadImage)).then(() => {
+      // Load remaining images in background
+      remainingImages.forEach(src => preloadImage(src));
+    });
+  }, [items]);
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
@@ -994,7 +1040,28 @@ export default function DomeGallery({
         ['--adaptive-color']: currentColorRef.current
       }}
     >
-      <main ref={mainRef} className="sphere-main">
+      {!imagesLoaded && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          background: 'rgba(10, 10, 15, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <div style={{
+            width: '60px',
+            height: '60px',
+            border: '4px solid rgba(168, 85, 247, 0.2)',
+            borderTop: '4px solid #a855f7',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }} />
+        </div>
+      )}
+      <main ref={mainRef} className="sphere-main" style={{ opacity: imagesLoaded ? 1 : 0.3 }}>
         <div className="stage">
           <div ref={sphereRef} className="sphere">
             {items.map((it, i) => (
@@ -1067,8 +1134,9 @@ export default function DomeGallery({
                       src={it.src} 
                       draggable={false} 
                       alt={it.alt}
-                      loading="lazy"
+                      loading={i < 20 ? "eager" : "lazy"}
                       decoding="async"
+                      fetchpriority={i < 10 ? "high" : "auto"}
                       onLoad={(e) => {
                         e.target.style.opacity = '1';
                       }}
