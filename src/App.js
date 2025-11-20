@@ -1,8 +1,8 @@
-import DomeGallery from './DomeGallery';
 import HeroSection from './HeroSection';
 import ShowtimeSchedule from './ShowtimeSchedule';
 import VenueSection from './VenueSection';
 import PartyFooter from './PartyFooter';
+import DomeGallery from './DomeGallery';
 import './App.css';
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
 
       {/* Venue Section */}
       <VenueSection
-          title="Venue Details"
+        title="Venue Details"
         date="November 21, 2025"
         time="7:30 AM - 6:00 PM"
         venueName="K.V.G Samudaya Bhavana"
