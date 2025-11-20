@@ -6,6 +6,8 @@ import PartyFooter from './PartyFooter';
 import './App.css';
 
 export default function App() {
+  console.log('App component is rendering');
+  
   return (
     <div className="App">
       {/* Hero Section with Ghost Cursor Effect */}
