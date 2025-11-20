@@ -9,7 +9,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  touch-action: pan-y;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 768px) {
@@ -74,8 +75,9 @@
   position: relative;
   box-sizing: border-box;
   overflow: visible;
-  touch-action: pan-y;
+  touch-action: auto;
   padding: 100px 20px;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -99,6 +101,7 @@
   align-items: center;
   will-change: transform;
   perspective: 1000px;
+  pointer-events: none;
 }
 
 .showtime-orbit-container {
@@ -132,6 +135,7 @@
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  pointer-events: none;
 }
 
 @keyframes showtime-pulse-glow {
@@ -249,7 +253,7 @@
   margin-top: -80px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
   will-change: transform;
@@ -258,6 +262,7 @@
   transform-style: flat;
   -webkit-transform-style: flat;
   transition: none !important;
+  pointer-events: auto;
 }
 
 .showtime-card-content {
