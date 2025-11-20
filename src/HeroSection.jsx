@@ -385,7 +385,7 @@ export default function HeroSection() {
     <section className="hero-section" ref={hostRef}>
       <div className="hero-content">
         <img 
-          src="/csmanicz.png" 
+          src={`${process.env.PUBLIC_URL || ''}/csmanicz.png`}
           alt="CS Manicz Logo" 
           className="hero-logo"
         />
