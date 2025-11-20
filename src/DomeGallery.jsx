@@ -165,9 +165,6 @@ export default function DomeGallery({
   const autoRotateSpeedRef = useRef(0); // For smooth acceleration/deceleration
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Build items before using them
-  const items = useMemo(() => buildItems(images, segments), [images, segments]);
-
   // Preload images
   useEffect(() => {
     const imageUrls = items
@@ -225,6 +222,8 @@ export default function DomeGallery({
     scrollLockedRef.current = false;
     document.body.classList.remove('dg-scroll-lock');
   }, []);
+
+  const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
   const applyTransform = (xDeg, yDeg) => {
     const el = sphereRef.current;
