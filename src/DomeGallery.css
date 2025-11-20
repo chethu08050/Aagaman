@@ -497,9 +497,3 @@ body.dg-scroll-lock {
     transform: translate(-50%, -50%) scale(1.05);
   }
 }
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
