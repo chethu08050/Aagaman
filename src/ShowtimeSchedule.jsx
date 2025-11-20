@@ -40,6 +40,7 @@ const calculatePosition = (angle, radius) => {
 export default function ShowtimeSchedule() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState([]);
+  const [revealedEvents, setRevealedEvents] = useState([]);
   const [orbitRotation, setOrbitRotation] = useState(0);
   const [cardPositions, setCardPositions] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -93,6 +94,40 @@ export default function ShowtimeSchedule() {
     };
   }, []);
 
+  useEffect(() => {
+    const checkEventTimes = () => {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+      const revealed = [];
+      let latestEventIndex = 0;
+      eventsData.forEach((event, index) => {
+        const timeMatch = event.time.match(/(\d+):(\d+)\s*(AM|PM)/);
+        if (timeMatch) {
+          let eventHour = parseInt(timeMatch[1]);
+          const eventMinute = parseInt(timeMatch[2]);
+          const period = timeMatch[3];
+          if (period === "PM" && eventHour !== 12) eventHour += 12;
+          else if (period === "AM" && eventHour === 12) eventHour = 0;
+          if (currentHour > eventHour || (currentHour === eventHour && currentMinute >= eventMinute)) {
+            revealed.push(index);
+            latestEventIndex = index;
+          }
+        }
+      });
+      if (revealed.length === 0) {
+        setRevealedEvents([]);
+        setCurrentEventIndex(0);
+      } else {
+        setRevealedEvents(revealed);
+        setCurrentEventIndex(latestEventIndex);
+      }
+    };
+    checkEventTimes();
+    const interval = setInterval(checkEventTimes, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleCardClick = (index) => {
     setCurrentEventIndex(index);
     setSelectedEvent(eventsData[index]);
@@ -120,6 +155,7 @@ export default function ShowtimeSchedule() {
                 event={event}
                 index={index}
                 visible={visibleCards.includes(index)}
+                revealed={revealedEvents.includes(index)}
                 position={cardPositions[index] || { x: 0, y: 0 }}
                 rotation={-orbitRotation}
                 onCardClick={handleCardClick}
@@ -134,7 +170,7 @@ export default function ShowtimeSchedule() {
   );
 }
 
-function EventCard({ event, index, visible, position, rotation, onCardClick }) {
+function EventCard({ event, index, visible, revealed, position, rotation, onCardClick }) {
   const cardRef = useRef(null);
   const hasAnimated = useRef(false);
 
