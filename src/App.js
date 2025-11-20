@@ -1,9 +1,12 @@
-import DomeGallery from './DomeGallery';
+import { lazy, Suspense } from 'react';
 import HeroSection from './HeroSection';
-import ShowtimeSchedule from './ShowtimeSchedule';
-import VenueSection from './VenueSection';
-import PartyFooter from './PartyFooter';
+import LoadingFallback from './LoadingFallback';
 import './App.css';
+
+const DomeGallery = lazy(() => import('./DomeGallery'));
+const ShowtimeSchedule = lazy(() => import('./ShowtimeSchedule'));
+const VenueSection = lazy(() => import('./VenueSection'));
+const PartyFooter = lazy(() => import('./PartyFooter'));
 
 export default function App() {
   return (
@@ -12,7 +15,9 @@ export default function App() {
       <HeroSection />
 
       {/* Showtime Schedule Section */}
-      <ShowtimeSchedule />
+      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
+        <ShowtimeSchedule />
+      </Suspense>
 
       {/* Gallery Title Section */}
       <section className="gallery-header-section">
@@ -22,13 +27,16 @@ export default function App() {
       </section>
 
       {/* Gallery Section - Full viewport */}
-      <section style={{ width: '100vw', height: '100vh' }}>
-        <DomeGallery grayscale={false} />
-      </section>
+      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
+        <section style={{ width: '100vw', height: '100vh' }}>
+          <DomeGallery grayscale={false} />
+        </section>
+      </Suspense>
 
       {/* Venue Section */}
-      <VenueSection
-        title="Venue Details"
+      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
+        <VenueSection
+          title="Venue Details"
         date="November 21, 2025"
         time="7:30 AM - 6:00 PM"
         venueName="K.V.G Samudaya Bhavana"
@@ -41,9 +49,11 @@ export default function App() {
           { icon: "🅿️", text: "Parking available in Samudaya Bhavana" }
         ]}
       />
+      </Suspense>
 
       {/* Footer Section */}
-      <PartyFooter
+      <Suspense fallback={<LoadingFallback minHeight="50vh" />}>
+        <PartyFooter
         collegeName="Computer Science Department"
         branchName="K.V.G COLLEGE OF ENGINEERING"
         eventName="AAGAMAN 2025"
@@ -55,6 +65,7 @@ export default function App() {
           email: null
         }}
       />
+      </Suspense>
     </div>
   );
 }
