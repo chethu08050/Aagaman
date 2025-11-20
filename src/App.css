@@ -3,6 +3,8 @@
   background: #0a0a0f;
   overflow-x: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 /* Gallery Header Section */
