@@ -6,6 +6,11 @@ import PartyFooter from './PartyFooter';
 import './App.css';
 
 export default function App() {
+  // Log to verify app is loading
+  if (process.env.NODE_ENV === 'development') {
+    console.log('App component mounted');
+  }
+  
   return (
     <div className="App">
       {/* Hero Section with Ghost Cursor Effect */}
@@ -28,7 +33,7 @@ export default function App() {
 
       {/* Venue Section */}
       <VenueSection
-          title="Venue Details"
+        title="Venue Details"
         date="November 21, 2025"
         time="7:30 AM - 6:00 PM"
         venueName="K.V.G Samudaya Bhavana"
