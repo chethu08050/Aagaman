@@ -1,12 +1,9 @@
-import { lazy, Suspense } from 'react';
+import DomeGallery from './DomeGallery';
 import HeroSection from './HeroSection';
-import LoadingFallback from './LoadingFallback';
+import ShowtimeSchedule from './ShowtimeSchedule';
+import VenueSection from './VenueSection';
+import PartyFooter from './PartyFooter';
 import './App.css';
-
-const DomeGallery = lazy(() => import('./DomeGallery'));
-const ShowtimeSchedule = lazy(() => import('./ShowtimeSchedule'));
-const VenueSection = lazy(() => import('./VenueSection'));
-const PartyFooter = lazy(() => import('./PartyFooter'));
 
 export default function App() {
   return (
@@ -15,9 +12,7 @@ export default function App() {
       <HeroSection />
 
       {/* Showtime Schedule Section */}
-      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
-        <ShowtimeSchedule />
-      </Suspense>
+      <ShowtimeSchedule />
 
       {/* Gallery Title Section */}
       <section className="gallery-header-section">
@@ -27,15 +22,12 @@ export default function App() {
       </section>
 
       {/* Gallery Section - Full viewport */}
-      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
-        <section style={{ width: '100vw', height: '100vh' }}>
-          <DomeGallery grayscale={false} />
-        </section>
-      </Suspense>
+      <section style={{ width: '100vw', height: '100vh' }}>
+        <DomeGallery grayscale={false} />
+      </section>
 
       {/* Venue Section */}
-      <Suspense fallback={<LoadingFallback minHeight="100vh" />}>
-        <VenueSection
+      <VenueSection
           title="Venue Details"
         date="November 21, 2025"
         time="7:30 AM - 6:00 PM"
@@ -49,11 +41,9 @@ export default function App() {
           { icon: "🅿️", text: "Parking available in Samudaya Bhavana" }
         ]}
       />
-      </Suspense>
 
       {/* Footer Section */}
-      <Suspense fallback={<LoadingFallback minHeight="50vh" />}>
-        <PartyFooter
+      <PartyFooter
         collegeName="Computer Science Department"
         branchName="K.V.G COLLEGE OF ENGINEERING"
         eventName="AAGAMAN 2025"
@@ -65,7 +55,6 @@ export default function App() {
           email: null
         }}
       />
-      </Suspense>
     </div>
   );
 }
