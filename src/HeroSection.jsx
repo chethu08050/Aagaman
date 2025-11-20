@@ -15,13 +15,13 @@ export default function HeroSection() {
 
     const createGhostCursor = (host, opts = {}) => {
       const defaults = {
-        trailLength: 50,
+        trailLength: 30,
         inertia: 0.5,
-        grainIntensity: 0.05,
-        bloomStrength: 0.1,
-        bloomRadius: 1.0,
-        bloomThreshold: 0.025,
-        brightness: 5,
+        grainIntensity: 0.03,
+        bloomStrength: 0.08,
+        bloomRadius: 0.8,
+        bloomThreshold: 0.03,
+        brightness: 4,
         color: '#B19EEF',
         mixBlendMode: 'screen',
         edgeIntensity: 0,
@@ -361,14 +361,14 @@ export default function HeroSection() {
 
     cursorRef.current = createGhostCursor(hostRef.current, {
       color: '#B19EEF',
-      brightness: 5,
+      brightness: 4,
       edgeIntensity: 0,
-      trailLength: 50,
+      trailLength: 30,
       inertia: 0.5,
-      grainIntensity: 0.05,
-      bloomStrength: 0.1,
-      bloomRadius: 1.0,
-      bloomThreshold: 0.025,
+      grainIntensity: 0.03,
+      bloomStrength: 0.08,
+      bloomRadius: 0.8,
+      bloomThreshold: 0.03,
       fadeDelayMs: 1000,
       fadeDurationMs: 1500,
       mixBlendMode: 'screen'
