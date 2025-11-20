@@ -38,6 +38,7 @@
   height: auto;
   filter: drop-shadow(0 0 40px rgba(168, 85, 247, 0.6));
   animation: hero-logo-float 6s ease-in-out infinite;
+  will-change: transform, filter;
 }
 
 @keyframes hero-logo-float {
