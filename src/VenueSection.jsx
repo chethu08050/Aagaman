@@ -95,11 +95,12 @@ export default function VenueSection({
               src={mapEmbedUrl}
               width="100%"
               height="100%"
-              style={{ border: 0 }}
+              style={{ border: 0, display: 'block' }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Venue Location"
+              frameBorder="0"
             />
             <div className="venue-map-overlay" />
           </div>
