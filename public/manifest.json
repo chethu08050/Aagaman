@@ -1,0 +1,9 @@
+{
+  "short_name": "Aagaman",
+  "name": "Aagaman Fresher Party Gallery",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#8a2be2",
+  "background_color": "#060010"
+}
