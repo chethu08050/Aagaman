@@ -4,49 +4,41 @@ import './DomeGallery.css';
 
 const DEFAULT_IMAGES = [
   // Photos
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.02_1a74621a.jpg', alt: 'Fresher Party Photo 1' },
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.03_342139af.jpg', alt: 'Fresher Party Photo 2' },
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.19_06c769e7.jpg', alt: 'Fresher Party Photo 3' },
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.21_2347d3c8.jpg', alt: 'Fresher Party Photo 4' },
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.57.06_075ad04b.jpg', alt: 'Fresher Party Photo 5' },
-  { src: '/media/WhatsApp Image 2025-11-19 at 12.57.06_72c58784.jpg', alt: 'Fresher Party Photo 6' },
+  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.03_342139af.jpg', alt: 'Fresher Party Photo 1' },
+  { src: '/media/WhatsApp Image 2025-11-19 at 12.56.19_06c769e7.jpg', alt: 'Fresher Party Photo 2' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.40.47_18613c6a.jpg', alt: 'Fresher Party Photo 3' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.40.47_4ee9b173.jpg', alt: 'Fresher Party Photo 4' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.33_90291a03.jpg', alt: 'Fresher Party Photo 5' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.34_37b0e162.jpg', alt: 'Fresher Party Photo 6' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.34_3a82c0fd.jpg', alt: 'Fresher Party Photo 7' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.34_6059ecd5.jpg', alt: 'Fresher Party Photo 8' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.53_d38dc65d.jpg', alt: 'Fresher Party Photo 9' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.42.53_f1b4872c.jpg', alt: 'Fresher Party Photo 10' },
+  { src: '/media/WhatsApp Image 2025-11-20 at 09.43.17_c22d4e91.jpg', alt: 'Fresher Party Photo 11' },
   
   // Videos
   { src: '/media/WhatsApp Video 2025-11-19 at 12.56.04_1ec871db.mp4', alt: 'Fresher Party Video 1' },
   { src: '/media/WhatsApp Video 2025-11-19 at 12.56.04_689a7829.mp4', alt: 'Fresher Party Video 2' },
   { src: '/media/WhatsApp Video 2025-11-19 at 12.56.05_31696360.mp4', alt: 'Fresher Party Video 3' },
   { src: '/media/WhatsApp Video 2025-11-19 at 12.56.06_0ac574de.mp4', alt: 'Fresher Party Video 4' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.08_cb980e93.mp4', alt: 'Fresher Party Video 5' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.11_3f7c22b7.mp4', alt: 'Fresher Party Video 6' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.13_da7ffd16.mp4', alt: 'Fresher Party Video 7' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.14_c01c6560.mp4', alt: 'Fresher Party Video 8' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.16_9af73134.mp4', alt: 'Fresher Party Video 9' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.23_fe9d421f.mp4', alt: 'Fresher Party Video 10' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.24_66832c2b.mp4', alt: 'Fresher Party Video 11' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.25_3a64f5d7.mp4', alt: 'Fresher Party Video 12' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_1686b5df.mp4', alt: 'Fresher Party Video 13' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_1c76519c.mp4', alt: 'Fresher Party Video 14' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_6b07a0a1.mp4', alt: 'Fresher Party Video 15' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.04_0d483b8d.mp4', alt: 'Fresher Party Video 16' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.04_7969c45d.mp4', alt: 'Fresher Party Video 17' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.04_b096a93c.mp4', alt: 'Fresher Party Video 18' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.05_05b144b3.mp4', alt: 'Fresher Party Video 19' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.05_086fb99e.mp4', alt: 'Fresher Party Video 20' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.05_360144f6.mp4', alt: 'Fresher Party Video 21' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.06_6b573080.mp4', alt: 'Fresher Party Video 22' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.07_47eb0d28.mp4', alt: 'Fresher Party Video 23' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.07_94b52ddd.mp4', alt: 'Fresher Party Video 24' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.07_bc94785c.mp4', alt: 'Fresher Party Video 25' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.08_6080ddec.mp4', alt: 'Fresher Party Video 26' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.08_c0cf40c9.mp4', alt: 'Fresher Party Video 27' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.08_d9a1c257.mp4', alt: 'Fresher Party Video 28' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.09_7b120798.mp4', alt: 'Fresher Party Video 29' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.09_ae0c001a.mp4', alt: 'Fresher Party Video 30' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.09_b731ee61.mp4', alt: 'Fresher Party Video 31' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.10_16c55ec2.mp4', alt: 'Fresher Party Video 32' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.10_77b34987.mp4', alt: 'Fresher Party Video 33' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.10_d983d46c.mp4', alt: 'Fresher Party Video 34' },
-  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.11_25509d08.mp4', alt: 'Fresher Party Video 35' }
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.11_3f7c22b7.mp4', alt: 'Fresher Party Video 5' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.23_fe9d421f.mp4', alt: 'Fresher Party Video 6' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.56.25_3a64f5d7.mp4', alt: 'Fresher Party Video 7' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_1686b5df.mp4', alt: 'Fresher Party Video 8' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_1c76519c.mp4', alt: 'Fresher Party Video 9' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.03_6b07a0a1.mp4', alt: 'Fresher Party Video 10' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.04_0d483b8d.mp4', alt: 'Fresher Party Video 11' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.06_6b573080.mp4', alt: 'Fresher Party Video 12' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.07_47eb0d28.mp4', alt: 'Fresher Party Video 13' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.07_bc94785c.mp4', alt: 'Fresher Party Video 14' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.08_c0cf40c9.mp4', alt: 'Fresher Party Video 15' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.08_d9a1c257.mp4', alt: 'Fresher Party Video 16' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.10_16c55ec2.mp4', alt: 'Fresher Party Video 17' },
+  { src: '/media/WhatsApp Video 2025-11-19 at 12.57.10_d983d46c.mp4', alt: 'Fresher Party Video 18' },
+  { src: '/media/WhatsApp Video 2025-11-20 at 09.41.50_e7d69fb5.mp4', alt: 'Fresher Party Video 19' },
+  { src: '/media/WhatsApp Video 2025-11-20 at 09.41.51_3ff28cd1.mp4', alt: 'Fresher Party Video 20' },
+  { src: '/media/WhatsApp Video 2025-11-20 at 09.41.51_d0677dd7.mp4', alt: 'Fresher Party Video 21' },
+  { src: '/media/WhatsApp Video 2025-11-20 at 09.41.52_881d5659.mp4', alt: 'Fresher Party Video 22' }
 ];
 
 const DEFAULTS = {
@@ -170,6 +162,7 @@ export default function DomeGallery({
   const analyserRef = useRef(null);
   const currentColorRef = useRef('#8a2be2');
   const isHoveringTileRef = useRef(false);
+  const autoRotateSpeedRef = useRef(0); // For smooth acceleration/deceleration
 
   const scrollLockedRef = useRef(false);
   const lockScroll = useCallback(() => {
@@ -189,7 +182,10 @@ export default function DomeGallery({
   const applyTransform = (xDeg, yDeg) => {
     const el = sphereRef.current;
     if (el) {
-      el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
+      // Use CSS custom properties for smoother transform updates
+      const transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg.toFixed(3)}deg) rotateY(${yDeg.toFixed(3)}deg)`;
+      el.style.transform = transform;
+      el.style.webkitTransform = transform; // Safari/iOS optimization
     }
   };
 
@@ -335,39 +331,39 @@ export default function DomeGallery({
         startRotRef.current = { ...rotationRef.current };
         startPosRef.current = { x: evt.clientX, y: evt.clientY };
         
-        // Cancel any pending RAF
+        // Cancel any pending RAF and remove CSS transitions for immediate response
         if (rafIdRef.current) {
           cancelAnimationFrame(rafIdRef.current);
           rafIdRef.current = null;
+        }
+        if (sphereRef.current) {
+          sphereRef.current.style.transition = 'none';
         }
       },
       onDrag: ({ event, last, velocity = [0, 0], direction = [0, 0], movement }) => {
         if (focusedElRef.current || !draggingRef.current || !startPosRef.current) return;
         
-        // Use RAF for smooth updates
-        if (rafIdRef.current) {
-          cancelAnimationFrame(rafIdRef.current);
+        // Throttle updates for smoother performance - update immediately without RAF during drag
+        const evt = event;
+        const dxTotal = evt.clientX - startPosRef.current.x;
+        const dyTotal = evt.clientY - startPosRef.current.y;
+        
+        if (!movedRef.current) {
+          const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
+          if (dist2 > 9) movedRef.current = true;
         }
         
-        rafIdRef.current = requestAnimationFrame(() => {
-          const evt = event;
-          const dxTotal = evt.clientX - startPosRef.current.x;
-          const dyTotal = evt.clientY - startPosRef.current.y;
-          if (!movedRef.current) {
-            const dist2 = dxTotal * dxTotal + dyTotal * dyTotal;
-            if (dist2 > 9) movedRef.current = true;
-          }
-          const nextX = clamp(
-            startRotRef.current.x - dyTotal / dragSensitivity,
-            -maxVerticalRotationDeg,
-            maxVerticalRotationDeg
-          );
-          const nextY = wrapAngleSigned(startRotRef.current.y + dxTotal / dragSensitivity);
-          if (rotationRef.current.x !== nextX || rotationRef.current.y !== nextY) {
-            rotationRef.current = { x: nextX, y: nextY };
-            applyTransform(nextX, nextY);
-          }
-        });
+        const nextX = clamp(
+          startRotRef.current.x - dyTotal / dragSensitivity,
+          -maxVerticalRotationDeg,
+          maxVerticalRotationDeg
+        );
+        const nextY = wrapAngleSigned(startRotRef.current.y + dxTotal / dragSensitivity);
+        
+        if (rotationRef.current.x !== nextX || rotationRef.current.y !== nextY) {
+          rotationRef.current = { x: nextX, y: nextY };
+          applyTransform(nextX, nextY);
+        }
         
         if (last) {
           draggingRef.current = false;
@@ -579,23 +575,24 @@ export default function DomeGallery({
         let audioSource = null;
         
         video.addEventListener('loadedmetadata', () => {
-          if (!audioContextRef.current) {
-            audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-          }
-          if (!analyserRef.current) {
-            analyserRef.current = audioContextRef.current.createAnalyser();
-            analyserRef.current.fftSize = 128;
-          }
-          
-          if (!audioSource && !video.dataset.audioConnected) {
-            try {
+          // Audio visualization - suppress errors as they don't affect functionality
+          try {
+            if (!audioContextRef.current) {
+              audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (!analyserRef.current) {
+              analyserRef.current = audioContextRef.current.createAnalyser();
+              analyserRef.current.fftSize = 128;
+            }
+            
+            if (!audioSource && !video.dataset.audioConnected) {
               audioSource = audioContextRef.current.createMediaElementSource(video);
               audioSource.connect(analyserRef.current);
               analyserRef.current.connect(audioContextRef.current.destination);
               video.dataset.audioConnected = 'true';
-            } catch (e) {
-              console.log('Audio source already exists or not supported');
             }
+          } catch (e) {
+            // Silently handle audio context errors - video will still play
           }
         });
         
@@ -646,15 +643,15 @@ export default function DomeGallery({
         
         // Ensure video plays with sound
         video.play().catch(err => {
-          console.log('Autoplay with sound blocked, user interaction required:', err);
-          // If autoplay with sound is blocked, try muted autoplay
+          // Silently handle autoplay issues - browser will require user interaction
           video.muted = true;
           video.play().then(() => {
-            // Add click handler to unmute on first interaction
             video.addEventListener('click', () => {
               video.muted = false;
               video.volume = 1.0;
             }, { once: true });
+          }).catch(() => {
+            // Video autoplay completely blocked - user must interact
           });
         });
       } else {
@@ -753,19 +750,20 @@ export default function DomeGallery({
     };
   }, []);
 
-  // Feature 1: Particle System with Spotlight
+  // Feature 1: Optimized Particle System with Spotlight
   useEffect(() => {
-    const particleCount = 80;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 20 : 35; // Further reduced for faster loading
     const particles = [];
     
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 1.5 + 0.8,
-        opacity: Math.random() * 0.4 + 0.2
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2,
+        size: Math.random() * 1.2 + 0.6,
+        opacity: Math.random() * 0.3 + 0.15
       });
     }
     particlesRef.current = particles;
@@ -781,109 +779,142 @@ export default function DomeGallery({
     canvas.style.zIndex = '1';
     rootRef.current?.prepend(canvas);
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     let animationId;
     let frameCount = 0;
+    let lastFrameTime = performance.now();
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
-    window.addEventListener('resize', resize);
+    
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 200);
+    };
+    window.addEventListener('resize', handleResize);
 
-    const animate = () => {
-      frameCount++;
-      if (frameCount % 2 !== 0) {
+    const animate = (currentTime) => {
+      const deltaTime = currentTime - lastFrameTime;
+      
+      // Throttle to ~30fps for better performance
+      if (deltaTime < 33) {
         animationId = requestAnimationFrame(animate);
         return;
       }
       
+      lastFrameTime = currentTime;
+      frameCount++;
+      
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Update and draw particles
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        
-        // Draw particle (simplified calculation)
-        const dx = p.x - spotlightRef.current.x;
-        const dy = p.y - spotlightRef.current.y;
-        const distToSpotlight = Math.sqrt(dx * dx + dy * dy);
-        const spotlightInfluence = distToSpotlight < 250 ? Math.max(0, 1 - distToSpotlight / 250) : 0;
-        const size = p.size * (1 + spotlightInfluence * 1.5);
-        const opacity = p.opacity * (1 + spotlightInfluence);
-        
-        ctx.fillStyle = `rgba(168, 85, 247, ${opacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Draw connections (only 3 nearest, less frequently)
-        if (i % 3 === 0) {
-          particles.slice(i + 1, i + 4).forEach(p2 => {
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 100) {
-              ctx.strokeStyle = `rgba(168, 85, 247, ${(1 - dist / 100) * 0.25})`;
-              ctx.lineWidth = 0.5;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.stroke();
-            }
-          });
-        }
-      });
-      
-      // Draw spotlight (simplified)
-      if (frameCount % 3 === 0) {
-        const gradient = ctx.createRadialGradient(
-          spotlightRef.current.x, spotlightRef.current.y, 0,
-          spotlightRef.current.x, spotlightRef.current.y, 180
-        );
-        gradient.addColorStop(0, 'rgba(168, 85, 247, 0.12)');
-        gradient.addColorStop(0.7, 'rgba(168, 85, 247, 0.03)');
-        gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(spotlightRef.current.x, spotlightRef.current.y, 180, 0, Math.PI * 2);
-        ctx.fill();
+      // Update and draw particles (skip every other frame on mobile)
+      const skipFrame = isMobile && frameCount % 2 !== 0;
+      if (!skipFrame) {
+        particles.forEach((p, i) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          
+          // Simplified particle rendering
+          ctx.fillStyle = `rgba(168, 85, 247, ${p.opacity})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Reduce connection drawing (only on desktop, less frequently)
+          if (!isMobile && i % 5 === 0 && frameCount % 3 === 0) {
+            particles.slice(i + 1, i + 3).forEach(p2 => {
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 80) {
+                ctx.strokeStyle = `rgba(168, 85, 247, ${(1 - dist / 80) * 0.15})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+              }
+            });
+          }
+        });
       }
       
       animationId = requestAnimationFrame(animate);
     };
-    animate();
+    animationId = requestAnimationFrame(animate);
 
+    let mouseMoveTimeout;
     const handleMouseMove = (e) => {
-      spotlightRef.current = { x: e.clientX, y: e.clientY };
+      clearTimeout(mouseMoveTimeout);
+      mouseMoveTimeout = setTimeout(() => {
+        spotlightRef.current = { x: e.clientX, y: e.clientY };
+      }, 16); // Throttle mouse movement
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationId);
+      clearTimeout(resizeTimeout);
+      clearTimeout(mouseMoveTimeout);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
       canvas.remove();
     };
   }, []);
 
-  // Feature 4: Auto-Rotate with Hover Pause
+  // Feature 4: Optimized Auto-Rotate with Hover Pause - ULTRA SMOOTH SLOW MOTION
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     let lastTime = performance.now();
+    const targetFPS = isMobile ? 30 : 60;
+    const frameDelay = 1000 / targetFPS;
+    
+    // SLOW MOTION rotation speed - degrees per second (ultra-slow for cinematic, attractive look)
+    const maxRotationSpeed = isMobile ? 1.5 : 2; // degrees per second for slow motion, elegant effect
+    const acceleration = 0.15; // Even slower acceleration for ultra-smooth graceful start/stop
+    
     const autoRotate = (currentTime) => {
-      const deltaTime = currentTime - lastTime;
-      if (deltaTime >= 16.67) {
-        if (!isHoveringTileRef.current && !draggingRef.current && !focusedElRef.current) {
-          const speed = 0.1;
-          const nextY = wrapAngleSigned(rotationRef.current.y + speed);
-          rotationRef.current.y = nextY;
-          applyTransform(rotationRef.current.x, nextY);
+      const deltaTime = Math.min(currentTime - lastTime, 100); // Cap delta to prevent jumps
+      
+      if (deltaTime >= frameDelay) {
+        const shouldRotate = !isHoveringTileRef.current && !draggingRef.current && !focusedElRef.current;
+        
+        if (shouldRotate) {
+          // Smoothly accelerate to target speed
+          autoRotateSpeedRef.current = Math.min(
+            autoRotateSpeedRef.current + acceleration,
+            maxRotationSpeed
+          );
+        } else {
+          // Smoothly decelerate to stop
+          autoRotateSpeedRef.current = Math.max(
+            autoRotateSpeedRef.current - acceleration * 2,
+            0
+          );
         }
+        
+        if (autoRotateSpeedRef.current > 0.01) {
+          // Calculate smooth rotation based on actual elapsed time and current speed
+          const rotationDelta = (autoRotateSpeedRef.current * deltaTime) / 1000;
+          const nextY = wrapAngleSigned(rotationRef.current.y + rotationDelta);
+          rotationRef.current.y = nextY;
+          
+          // Use CSS transitions for ultra-smooth rendering
+          const sphereEl = sphereRef.current;
+          if (sphereEl) {
+            // Adaptive transition timing based on frame delay
+            sphereEl.style.transition = `transform ${Math.floor(frameDelay)}ms linear`;
+            applyTransform(rotationRef.current.x, nextY);
+          }
+        }
+        
         lastTime = currentTime;
       }
       autoRotateRAF.current = requestAnimationFrame(autoRotate);
@@ -898,41 +929,55 @@ export default function DomeGallery({
     };
   }, []);
 
-  // Feature 5: Color-Adaptive Lighting
+  // Feature 5: Optimized Color-Adaptive Lighting
   const updateAmbientColor = useCallback((element) => {
+    // Disable on mobile for better performance
+    if (window.innerWidth < 768) return;
+    
     const media = element.querySelector('img, video');
     if (!media) return;
 
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 50;
-    canvas.height = 50;
-
-    if (media.tagName === 'VIDEO') {
-      ctx.drawImage(media, 0, 0, 50, 50);
-    } else if (media.complete) {
-      ctx.drawImage(media, 0, 0, 50, 50);
-    } else {
+    // Throttle color updates
+    const now = performance.now();
+    if (element.dataset.lastColorUpdate && now - parseFloat(element.dataset.lastColorUpdate) < 500) {
       return;
     }
+    element.dataset.lastColorUpdate = now.toString();
 
-    const imageData = ctx.getImageData(0, 0, 50, 50).data;
-    let r = 0, g = 0, b = 0, count = 0;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    canvas.width = 30;
+    canvas.height = 30;
 
-    for (let i = 0; i < imageData.length; i += 4) {
-      r += imageData[i];
-      g += imageData[i + 1];
-      b += imageData[i + 2];
-      count++;
+    try {
+      if (media.tagName === 'VIDEO' && media.readyState >= 2) {
+        ctx.drawImage(media, 0, 0, 30, 30);
+      } else if (media.tagName === 'IMG' && media.complete) {
+        ctx.drawImage(media, 0, 0, 30, 30);
+      } else {
+        return;
+      }
+
+      const imageData = ctx.getImageData(0, 0, 30, 30).data;
+      let r = 0, g = 0, b = 0, count = 0;
+
+      for (let i = 0; i < imageData.length; i += 4) {
+        r += imageData[i];
+        g += imageData[i + 1];
+        b += imageData[i + 2];
+        count++;
+      }
+
+      r = Math.floor(r / count);
+      g = Math.floor(g / count);
+      b = Math.floor(b / count);
+
+      const color = `rgb(${r}, ${g}, ${b})`;
+      currentColorRef.current = color;
+      rootRef.current?.style.setProperty('--adaptive-color', color);
+    } catch (e) {
+      // Silently fail for cross-origin images
     }
-
-    r = Math.floor(r / count);
-    g = Math.floor(g / count);
-    b = Math.floor(b / count);
-
-    const color = `rgb(${r}, ${g}, ${b})`;
-    currentColorRef.current = color;
-    rootRef.current?.style.setProperty('--adaptive-color', color);
   }, []);
 
   return (
@@ -990,9 +1035,13 @@ export default function DomeGallery({
                       muted 
                       loop 
                       playsInline
-                      preload="auto"
-                      poster=""
+                      preload="metadata"
+                      loading="lazy"
+                      crossOrigin="anonymous"
                       style={{ width: '100%', height: '100%', objectFit: 'cover', backgroundColor: 'rgba(168, 85, 247, 0.1)' }}
+                      onLoadedMetadata={(e) => {
+                        e.target.currentTime = 1;
+                      }}
                       onLoadedData={(e) => {
                         e.target.style.opacity = '1';
                         e.target.style.backgroundColor = 'transparent';
@@ -1001,10 +1050,16 @@ export default function DomeGallery({
                         e.target.style.opacity = '1';
                         e.target.style.backgroundColor = 'transparent';
                       }}
+                      onMouseEnter={(e) => {
+                        e.target.play().catch(() => {});
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.pause();
+                        e.target.currentTime = 1;
+                      }}
                       onError={(e) => {
-                        console.error('Video load error:', it.src, e);
-                        e.target.style.opacity = '0.5';
-                        e.target.style.backgroundColor = 'rgba(168, 85, 247, 0.2)';
+                        e.target.style.opacity = '0.7';
+                        e.target.style.backgroundColor = 'rgba(168, 85, 247, 0.15)';
                       }}
                     />
                   ) : (
@@ -1012,12 +1067,13 @@ export default function DomeGallery({
                       src={it.src} 
                       draggable={false} 
                       alt={it.alt}
+                      loading="lazy"
+                      decoding="async"
                       onLoad={(e) => {
                         e.target.style.opacity = '1';
                       }}
                       onError={(e) => {
-                        console.error('Image load error:', it.src, e);
-                        e.target.style.opacity = '1';
+                        e.target.style.opacity = '0.7';
                       }}
                     />
                   )}

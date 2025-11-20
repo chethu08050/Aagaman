@@ -56,6 +56,15 @@ main.sphere-main:active {
 .sphere {
   transform: translateZ(calc(var(--radius) * -1));
   will-change: transform;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Hardware acceleration for ultra-smooth slow motion rotation */
+  -webkit-transform: translateZ(calc(var(--radius) * -1));
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  /* Smooth slow motion easing */
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .overlay,
@@ -94,8 +103,13 @@ main.sphere-main:active {
   margin: auto;
   transform-origin: 50% 50%;
   backface-visibility: hidden;
-  transition: transform 300ms;
+  -webkit-backface-visibility: hidden;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
+    rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
+    translateZ(var(--radius));
+  /* Hardware acceleration for each tile */
+  -webkit-transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
     rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
     translateZ(var(--radius));
 }
@@ -108,32 +122,28 @@ main.sphere-main:active {
   background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
   overflow: hidden;
   backface-visibility: hidden;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 300ms ease-out,
-              border-color 300ms ease-out,
-              background 300ms ease-out;
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 200ms ease-out;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   pointer-events: auto;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  will-change: transform;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(168, 85, 247, 0.2);
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
 }
 
 .item__image:hover {
-  transform: translateZ(20px) scale(1.05);
+  transform: translateZ(15px) scale(1.03);
   box-shadow: 
-    0 20px 60px rgba(168, 85, 247, 0.4),
-    0 0 40px rgba(59, 130, 246, 0.3),
-    0 0 0 3px rgba(168, 85, 247, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  border-color: rgba(168, 85, 247, 0.8);
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+    0 12px 30px rgba(168, 85, 247, 0.35),
+    0 0 20px rgba(59, 130, 246, 0.25),
+    0 0 0 2px rgba(168, 85, 247, 0.5);
+  border-color: rgba(168, 85, 247, 0.6);
 }
 
 .item__image:focus {
@@ -155,34 +165,20 @@ main.sphere-main:active {
   pointer-events: none;
   backface-visibility: hidden;
   filter: var(--image-filter, none);
-  transition: transform 400ms ease, filter 200ms ease, opacity 300ms ease-in;
+  transition: transform 300ms ease, filter 150ms ease, opacity 200ms ease-in;
   opacity: 0;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(59, 130, 246, 0.12));
+  will-change: opacity;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(59, 130, 246, 0.08));
 }
 
 .item__image video {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(59, 130, 246, 0.15));
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
 }
 
 .item__image:hover img,
 .item__image:hover video {
-  transform: scale(1.1);
-  filter: var(--image-filter, none) brightness(1.1) saturate(1.2);
-}
-
-.item__image video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  backface-visibility: hidden;
-  filter: var(--image-filter, none);
-  transition: transform 400ms ease, filter 300ms ease;
-}
-
-.item__image:hover video {
-  transform: scale(1.1);
-  filter: var(--image-filter, none) brightness(1.1) saturate(1.2);
+  transform: scale(1.05);
+  filter: var(--image-filter, none) brightness(1.05) saturate(1.1);
 }
 
 .viewer {
@@ -236,34 +232,19 @@ main.sphere-main:active {
   border-radius: var(--enlarge-radius, 32px);
   overflow: hidden;
   transition:
-    transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 500ms ease,
-    box-shadow 500ms ease;
+    transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 400ms ease,
+    left 400ms ease,
+    top 400ms ease,
+    width 400ms ease,
+    height 400ms ease;
   transform-origin: top left;
   box-shadow: 
-    0 30px 90px rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(168, 85, 247, 0.4),
-    0 0 0 3px rgba(168, 85, 247, 0.6),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  border: 3px solid rgba(168, 85, 247, 0.5);
-  animation: enlarge-glow 2s ease-in-out infinite;
-}
-
-@keyframes enlarge-glow {
-  0%, 100% {
-    box-shadow: 
-      0 30px 90px rgba(0, 0, 0, 0.5),
-      0 0 60px rgba(168, 85, 247, 0.4),
-      0 0 0 3px rgba(168, 85, 247, 0.6),
-      inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    box-shadow: 
-      0 30px 90px rgba(0, 0, 0, 0.5),
-      0 0 80px rgba(59, 130, 246, 0.5),
-      0 0 0 3px rgba(59, 130, 246, 0.7),
-      inset 0 2px 0 rgba(255, 255, 255, 0.4);
-  }
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(168, 85, 247, 0.3),
+    0 0 0 2px rgba(168, 85, 247, 0.5);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  will-change: transform, opacity;
 }
 
 .viewer .enlarge img {
@@ -317,68 +298,51 @@ body.dg-scroll-lock {
   overflow: hidden;
 }
 
-/* Loading shimmer effect */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-.item__image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(168, 85, 247, 0.05) 0%,
-    rgba(59, 130, 246, 0.15) 50%,
-    rgba(168, 85, 247, 0.05) 100%
-  );
-  background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
-  pointer-events: none;
-  z-index: -1;
-}
-
 /* Mobile-specific performance optimizations */
 @media (max-width: 768px) {
   .sphere-root {
-    /* Reduce visual complexity on mobile */
-    --enlarge-blur: 10px;
-    --radius: 400px;
+    --radius: 380px;
+  }
+  
+  /* Ultra-smooth rotation on mobile */
+  .sphere {
+    will-change: transform;
+    -webkit-transform: translateZ(calc(var(--radius) * -1));
+  }
+  
+  .item {
+    /* Reduce animation complexity for smoother rotation */
+    transition: transform 200ms ease-out;
+    will-change: auto;
   }
   
   .item__image {
-    /* Reduce shadows on mobile for better performance */
     box-shadow: 
-      0 4px 12px rgba(138, 43, 226, 0.4),
-      0 0 20px rgba(138, 43, 226, 0.2);
+      0 3px 10px rgba(138, 43, 226, 0.35),
+      0 0 15px rgba(138, 43, 226, 0.2);
     will-change: transform;
-    transition: transform 200ms ease-out, 
-                box-shadow 250ms ease-out;
+    transition: transform 150ms ease-out, 
+                box-shadow 150ms ease-out;
+    inset: 8px;
   }
   
   .item__image:hover {
-    /* Simplify hover effects on mobile */
     box-shadow: 
-      0 6px 20px rgba(138, 43, 226, 0.6),
-      0 0 30px rgba(138, 43, 226, 0.4);
+      0 5px 15px rgba(138, 43, 226, 0.5),
+      0 0 25px rgba(138, 43, 226, 0.35);
   }
   
   .item__image:active {
-    /* Add touch feedback */
-    transform: translateZ(10px) scale(0.98);
+    transform: translateZ(8px) scale(0.98);
   }
   
-  /* Disable complex animations on mobile */
-  .shimmer-effect,
-  .floating-ambient {
+  /* Disable complex effects on mobile */
+  .item__image::before,
+  .item__image::after {
+    display: none;
+  }
+  
+  .sphere-root::after {
     display: none;
   }
   
@@ -389,38 +353,45 @@ body.dg-scroll-lock {
   
   /* Reduce edge fade complexity */
   .edge-fade {
-    background: linear-gradient(to bottom, rgba(10, 10, 15, 0.4), transparent);
+    background: linear-gradient(to bottom, rgba(10, 10, 15, 0.3), transparent);
+    height: 100px;
   }
   
   .overlay--blur {
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
+  }
+  
+  /* Optimize popup on mobile */
+  .viewer .enlarge {
+    transition: transform 300ms ease, opacity 300ms ease;
   }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
   .sphere-root {
-    --radius: 320px;
+    --radius: 300px;
   }
   
   .item__image {
-    inset: 8px;
-    transition: transform 150ms ease-out;
+    inset: 6px;
+    transition: transform 120ms ease-out;
   }
   
   .item__image:hover {
-    transform: translateZ(15px) scale(1.03);
+    transform: translateZ(10px) scale(1.02);
+  }
+  
+  .edge-fade {
+    height: 80px;
   }
 }
 @keyframes float {
   0%, 100% {
     transform: translateY(0) translateX(0);
   }
-  25% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  75% {
-    transform: translateY(20px) translateX(-10px);
+  50% {
+    transform: translateY(-15px) translateX(8px);
   }
 }
 
@@ -429,8 +400,8 @@ body.dg-scroll-lock {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background: radial-gradient(
     circle,
     var(--adaptive-color) 0%,
@@ -440,13 +411,14 @@ body.dg-scroll-lock {
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 0;
-  animation: float 6s ease-in-out infinite;
-  filter: blur(40px);
-  opacity: 0.15;
-  transition: background 800ms ease, opacity 600ms ease;
+  animation: float 5s ease-in-out infinite;
+  filter: blur(35px);
+  opacity: 0.12;
+  transition: background 600ms ease, opacity 400ms ease;
+  will-change: auto;
 }
 
-/* Feature 3: Holographic Scanlines */
+/* Optimized scanlines - disabled by default for performance */
 .item__image::before {
   content: '';
   position: absolute;
@@ -456,24 +428,23 @@ body.dg-scroll-lock {
   bottom: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 255, 255, 0.02) 0px,
-    rgba(255, 0, 255, 0.02) 1px,
+    rgba(168, 85, 247, 0.01) 0px,
     transparent 1px,
     transparent 2px
   );
   pointer-events: none;
   z-index: 1;
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity 200ms ease;
   mix-blend-mode: screen;
   will-change: auto;
 }
 
 .item__image:hover::before {
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
-/* Glitch effect on hover - reduced intensity */
+/* Simplified glitch effect - reduced */
 .item__image:hover::after {
   content: '';
   position: absolute;
@@ -481,35 +452,22 @@ body.dg-scroll-lock {
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.3;
+  opacity: 0.15;
   z-index: 2;
-  animation: glitch 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-  mix-blend-mode: difference;
   pointer-events: none;
   will-change: auto;
 }
 
-@keyframes glitch {
-  0%, 100% {
-    transform: translate(0);
-  }
-  50% {
-    transform: translate(-1px, 1px);
-  }
-}
-
-/* Chromatic aberration - reduced */
+/* Chromatic aberration - disabled for performance */
 .item__image img,
 .item__image video {
   filter: var(--image-filter, none);
-  transition: filter 200ms ease;
+  transition: filter 150ms ease;
 }
 
 .item__image:hover img,
 .item__image:hover video {
-  filter: var(--image-filter, none) 
-    drop-shadow(1px 0 0 rgba(255, 0, 0, 0.2)) 
-    drop-shadow(-1px 0 0 rgba(0, 255, 255, 0.2));
+  filter: var(--image-filter, none) brightness(1.05);
 }
 
 /* Audio visualization container */
