@@ -2,45 +2,43 @@ import { useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useGesture } from '@use-gesture/react';
 import './DomeGallery.css';
 
-const getAssetUrl = (path) => `${process.env.PUBLIC_URL || ''}${path}`;
-
 const DEFAULT_IMAGES = [
   // Photos
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-19 at 12.56.03_342139af.jpg'), alt: 'Fresher Party Photo 1' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-19 at 12.56.19_06c769e7.jpg'), alt: 'Fresher Party Photo 2' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.40.47_18613c6a.jpg'), alt: 'Fresher Party Photo 3' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.40.47_4ee9b173.jpg'), alt: 'Fresher Party Photo 4' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.33_90291a03.jpg'), alt: 'Fresher Party Photo 5' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.34_37b0e162.jpg'), alt: 'Fresher Party Photo 6' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.34_3a82c0fd.jpg'), alt: 'Fresher Party Photo 7' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.34_6059ecd5.jpg'), alt: 'Fresher Party Photo 8' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.53_d38dc65d.jpg'), alt: 'Fresher Party Photo 9' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.42.53_f1b4872c.jpg'), alt: 'Fresher Party Photo 10' },
-  { src: getAssetUrl('/media/WhatsApp Image 2025-11-20 at 09.43.17_c22d4e91.jpg'), alt: 'Fresher Party Photo 11' },
+  { src: '/media/WhatsApp%20Image%202025-11-19%20at%2012.56.03_342139af.jpg', alt: 'Fresher Party Photo 1' },
+  { src: '/media/WhatsApp%20Image%202025-11-19%20at%2012.56.19_06c769e7.jpg', alt: 'Fresher Party Photo 2' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.40.47_18613c6a.jpg', alt: 'Fresher Party Photo 3' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.40.47_4ee9b173.jpg', alt: 'Fresher Party Photo 4' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.33_90291a03.jpg', alt: 'Fresher Party Photo 5' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.34_37b0e162.jpg', alt: 'Fresher Party Photo 6' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.34_3a82c0fd.jpg', alt: 'Fresher Party Photo 7' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.34_6059ecd5.jpg', alt: 'Fresher Party Photo 8' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.53_d38dc65d.jpg', alt: 'Fresher Party Photo 9' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.42.53_f1b4872c.jpg', alt: 'Fresher Party Photo 10' },
+  { src: '/media/WhatsApp%20Image%202025-11-20%20at%2009.43.17_c22d4e91.jpg', alt: 'Fresher Party Photo 11' },
   
   // Videos
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.04_1ec871db.mp4'), alt: 'Fresher Party Video 1' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.04_689a7829.mp4'), alt: 'Fresher Party Video 2' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.05_31696360.mp4'), alt: 'Fresher Party Video 3' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.06_0ac574de.mp4'), alt: 'Fresher Party Video 4' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.11_3f7c22b7.mp4'), alt: 'Fresher Party Video 5' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.23_fe9d421f.mp4'), alt: 'Fresher Party Video 6' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.56.25_3a64f5d7.mp4'), alt: 'Fresher Party Video 7' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.03_1686b5df.mp4'), alt: 'Fresher Party Video 8' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.03_1c76519c.mp4'), alt: 'Fresher Party Video 9' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.03_6b07a0a1.mp4'), alt: 'Fresher Party Video 10' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.04_0d483b8d.mp4'), alt: 'Fresher Party Video 11' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.06_6b573080.mp4'), alt: 'Fresher Party Video 12' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.07_47eb0d28.mp4'), alt: 'Fresher Party Video 13' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.07_bc94785c.mp4'), alt: 'Fresher Party Video 14' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.08_c0cf40c9.mp4'), alt: 'Fresher Party Video 15' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.08_d9a1c257.mp4'), alt: 'Fresher Party Video 16' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.10_16c55ec2.mp4'), alt: 'Fresher Party Video 17' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-19 at 12.57.10_d983d46c.mp4'), alt: 'Fresher Party Video 18' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-20 at 09.41.50_e7d69fb5.mp4'), alt: 'Fresher Party Video 19' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-20 at 09.41.51_3ff28cd1.mp4'), alt: 'Fresher Party Video 20' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-20 at 09.41.51_d0677dd7.mp4'), alt: 'Fresher Party Video 21' },
-  { src: getAssetUrl('/media/WhatsApp Video 2025-11-20 at 09.41.52_881d5659.mp4'), alt: 'Fresher Party Video 22' }
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.04_1ec871db.mp4', alt: 'Fresher Party Video 1' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.04_689a7829.mp4', alt: 'Fresher Party Video 2' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.05_31696360.mp4', alt: 'Fresher Party Video 3' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.06_0ac574de.mp4', alt: 'Fresher Party Video 4' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.11_3f7c22b7.mp4', alt: 'Fresher Party Video 5' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.23_fe9d421f.mp4', alt: 'Fresher Party Video 6' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.56.25_3a64f5d7.mp4', alt: 'Fresher Party Video 7' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.03_1686b5df.mp4', alt: 'Fresher Party Video 8' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.03_1c76519c.mp4', alt: 'Fresher Party Video 9' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.03_6b07a0a1.mp4', alt: 'Fresher Party Video 10' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.04_0d483b8d.mp4', alt: 'Fresher Party Video 11' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.06_6b573080.mp4', alt: 'Fresher Party Video 12' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.07_47eb0d28.mp4', alt: 'Fresher Party Video 13' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.07_bc94785c.mp4', alt: 'Fresher Party Video 14' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.08_c0cf40c9.mp4', alt: 'Fresher Party Video 15' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.08_d9a1c257.mp4', alt: 'Fresher Party Video 16' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.10_16c55ec2.mp4', alt: 'Fresher Party Video 17' },
+  { src: '/media/WhatsApp%20Video%202025-11-19%20at%2012.57.10_d983d46c.mp4', alt: 'Fresher Party Video 18' },
+  { src: '/media/WhatsApp%20Video%202025-11-20%20at%2009.41.50_e7d69fb5.mp4', alt: 'Fresher Party Video 19' },
+  { src: '/media/WhatsApp%20Video%202025-11-20%20at%2009.41.51_3ff28cd1.mp4', alt: 'Fresher Party Video 20' },
+  { src: '/media/WhatsApp%20Video%202025-11-20%20at%2009.41.51_d0677dd7.mp4', alt: 'Fresher Party Video 21' },
+  { src: '/media/WhatsApp%20Video%202025-11-20%20at%2009.41.52_881d5659.mp4', alt: 'Fresher Party Video 22' }
 ];
 
 const DEFAULTS = {
