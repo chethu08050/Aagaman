@@ -1,8 +1,8 @@
-import DomeGallery from './DomeGallery';
 import HeroSection from './HeroSection';
 import ShowtimeSchedule from './ShowtimeSchedule';
 import VenueSection from './VenueSection';
 import PartyFooter from './PartyFooter';
+// import DomeGallery from './DomeGallery';
 import './App.css';
 
 export default function App() {
@@ -21,9 +21,9 @@ export default function App() {
         </h1>
       </section>
 
-      {/* Gallery Section - Full viewport */}
-      <section style={{ width: '100vw', height: '100vh' }}>
-        <DomeGallery grayscale={false} />
+      {/* Gallery Section - Temporarily disabled */}
+      <section style={{ width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+        <div>Gallery coming soon...</div>
       </section>
 
       {/* Venue Section */}
